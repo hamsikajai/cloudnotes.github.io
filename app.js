@@ -142,3 +142,35 @@ function toggleTheme() {
         localStorage.setItem("theme", "dark");
     }
 }
+function showPage(pageId) {
+
+    const pages = document.querySelectorAll(".page");
+    const buttons = document.querySelectorAll(".nav-btn");
+
+    // hide all pages
+    pages.forEach(page => {
+        page.style.display = "none";
+    });
+
+    // remove active class
+    buttons.forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    // show selected page
+    document.getElementById(pageId).style.display = "block";
+
+    // activate clicked button
+    const activeBtn = document.querySelector(
+        `[onclick="showPage('${pageId}')"]`
+    );
+
+    if (activeBtn) {
+        activeBtn.classList.add("active");
+    }
+}
+
+// default page on load
+document.addEventListener("DOMContentLoaded", () => {
+    showPage("dashboard");
+});
