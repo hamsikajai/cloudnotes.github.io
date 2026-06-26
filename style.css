@@ -301,3 +301,13 @@ body {
     background: linear-gradient(90deg, #F8D4E3, #E4D7FF);
     transition: width 0.4s ease;
 }
+.page {
+    display: none;
+}
+
+.nav-btn.active {
+    background: #E4D7FF;
+    border-radius: 12px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
