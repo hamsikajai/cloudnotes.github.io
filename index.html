@@ -34,49 +34,56 @@
   <!-- 🌸 MAIN -->
   <main class="main">
 
-    <!-- 🏠 DASHBOARD -->
     <div id="dashboard" class="page">
 
-      <h2>🏠 Dashboard</h2>
+  <h2>🏠 Dashboard</h2>
 
-      <div class="grid">
+  <div class="grid">
 
-        <!-- 🌷 TASKS -->
-        <div class="card">
+    <!-- 🌷 TASKS -->
+    <div class="card">
+      <h3>🌷 Tasks</h3>
 
-          <h3>🌷 Today's Tasks</h3>
-
-          <div class="task-input">
-            <input id="taskInput" placeholder="Add a new task..." />
-            <button onclick="addTask()">Add</button>
-          </div>
-
-          <ul id="taskList"></ul>
-
-        </div>
-
-        <!-- 📊 PROGRESS -->
-        <div class="card">
-
-          <h3>📊 Progress</h3>
-
-          <div class="bar">
-            <div class="fill"></div>
-          </div>
-
-          <p id="progressText">🌸 Add your first task!</p>
-
-        </div>
-
-        <!-- 💖 QUOTE -->
-        <div class="card">
-          <h3>💖 Quote</h3>
-          <p>"Small progress every day adds up."</p>
-        </div>
-
+      <div class="task-input">
+        <input id="taskInput" placeholder="Add a new task..." />
+        <button onclick="addTask()">Add</button>
       </div>
 
+      <ul id="taskList"></ul>
     </div>
+
+    <!-- 📊 PROGRESS -->
+    <div class="card">
+      <h3>📊 Progress</h3>
+
+      <div class="bar">
+        <div class="fill"></div>
+      </div>
+
+      <p id="progressText">🌸 Add your first task!</p>
+    </div>
+
+    <!-- ⏰ REMINDERS -->
+    <div class="card">
+      <h3>⏰ Reminders</h3>
+
+      <div class="task-input">
+        <input id="reminderInput" placeholder="Add a reminder..." />
+        <button onclick="addReminder()">Add</button>
+      </div>
+
+      <ul id="reminderList"></ul>
+    </div>
+
+    <!-- 💖 QUOTE -->
+    <div class="card">
+      <h3>💖 Quote</h3>
+      <p>"Small progress every day adds up."</p>
+    </div>
+
+   </div>
+
+ </div>
 
     <!-- 📅 CALENDAR -->
     <div id="calendar" class="page">
