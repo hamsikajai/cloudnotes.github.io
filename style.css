@@ -252,3 +252,36 @@ textarea {
   opacity: 0;
   transform: translateX(20px);
 }
+:root {
+  --bg: #FFF8FC;
+  --card: #ffffff;
+  --text: #55536A;
+  --accent: #E4D7FF;
+}
+
+[data-theme="lavender"] {
+  --bg: #F5F0FF;
+  --card: #ffffff;
+  --text: #4B3F72;
+  --accent: #CDB4FF;
+}
+
+[data-theme="dark"] {
+  --bg: #1f1f2e;
+  --card: #2a2a3d;
+  --text: #f2f2f2;
+  --accent: #6C5CE7;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.card {
+  background: var(--card);
+}
+
+.task-input button {
+  background: var(--accent);
+}
