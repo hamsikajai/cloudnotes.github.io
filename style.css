@@ -285,3 +285,8 @@ body {
 .task-input button {
   background: var(--accent);
 }
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F8D4E3, #E4D7FF);
+    transition: width 0.4s ease;
+}
