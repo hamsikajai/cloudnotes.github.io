@@ -1,22 +1,18 @@
-// ---------- TASK STORAGE ----------
-
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const input = document.getElementById("taskInput");
 const list = document.getElementById("taskList");
 
-// ---------- INITIAL LOAD ----------
-
+// ---------- LOAD THEME ----------
 const savedTheme = localStorage.getItem("theme") || "pastel";
 document.body.setAttribute("data-theme", savedTheme);
 
+// ---------- INITIAL RENDER ----------
 renderTasks();
 
 // ---------- ADD TASK ----------
-
 function addTask() {
     const value = input.value.trim();
-
     if (!value) return;
 
     tasks.push({
@@ -25,26 +21,24 @@ function addTask() {
     });
 
     input.value = "";
-
     saveTasks();
     renderTasks();
 }
 
-// ---------- COMPLETE TASK ----------
-
+// ---------- TOGGLE COMPLETE ----------
 function toggleTask(index) {
     tasks[index].done = !tasks[index].done;
-
     saveTasks();
     renderTasks();
 }
 
 // ---------- DELETE TASK ----------
-
 function deleteTask(index) {
     const item = document.getElementById(`task-${index}`);
 
-    item.classList.add("fade-out");
+    if (item) {
+        item.classList.add("fade-out");
+    }
 
     setTimeout(() => {
         tasks.splice(index, 1);
@@ -54,13 +48,10 @@ function deleteTask(index) {
 }
 
 // ---------- RENDER TASKS ----------
-
 function renderTasks() {
-
     list.innerHTML = "";
 
     tasks.forEach((task, index) => {
-
         const li = document.createElement("li");
         li.id = `task-${index}`;
 
@@ -68,10 +59,9 @@ function renderTasks() {
             li.classList.add("done");
         }
 
-        // click task to complete
-        li.onclick = function(e) {
+        // click to toggle complete (but ignore delete button)
+        li.onclick = function (e) {
             if (e.target.classList.contains("delete-btn")) return;
-
             toggleTask(index);
         };
 
@@ -82,7 +72,7 @@ function renderTasks() {
         deleteBtn.textContent = "❌";
         deleteBtn.className = "delete-btn";
 
-        deleteBtn.onclick = function(e) {
+        deleteBtn.onclick = function (e) {
             e.stopPropagation();
             deleteTask(index);
         };
@@ -96,87 +86,59 @@ function renderTasks() {
     updateProgress();
 }
 
-// ---------- SAVE TASKS ----------
-
+// ---------- SAVE ----------
 function saveTasks() {
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // ---------- PROGRESS BAR ----------
-
 function updateProgress() {
-
     const fill = document.querySelector(".fill");
-    const progressText =
-        document.getElementById("progressText");
+    const progressText = document.getElementById("progressText");
 
     if (!fill || !progressText) return;
 
     if (tasks.length === 0) {
         fill.style.width = "0%";
-        progressText.textContent =
-            "🌸 No tasks yet";
+        progressText.textContent = "🌸 Add your first task!";
         return;
     }
 
-    const completed =
-        tasks.filter(task => task.done).length;
-
-    const percent =
-        Math.round(
-            (completed / tasks.length) * 100
-        );
+    const completed = tasks.filter(t => t.done).length;
+    const percent = Math.round((completed / tasks.length) * 100);
 
     fill.style.width = percent + "%";
 
+    let message = "";
+
+    if (percent === 100) {
+        message = "🏆 All tasks completed!";
+    } else if (percent >= 75) {
+        message = "🌟 Almost there!";
+    } else if (percent >= 50) {
+        message = "✨ Great progress!";
+    } else if (percent >= 25) {
+        message = "🌸 Keep going!";
+    } else {
+        message = "☁️ You've got this!";
+    }
+
     progressText.textContent =
-        `✨ ${completed}/${tasks.length} tasks completed`;
+        `${message} • ${completed}/${tasks.length} tasks • ${percent}%`;
 }
 
 // ---------- THEME SWITCHER ----------
-
 function toggleTheme() {
-
-    const current =
-        document.body.getAttribute("data-theme");
+    const current = document.body.getAttribute("data-theme");
 
     if (current === "dark") {
-
-        document.body.setAttribute(
-            "data-theme",
-            "pastel"
-        );
-
-        localStorage.setItem(
-            "theme",
-            "pastel"
-        );
-
+        document.body.setAttribute("data-theme", "pastel");
+        localStorage.setItem("theme", "pastel");
     } else if (current === "pastel") {
-
-        document.body.setAttribute(
-            "data-theme",
-            "lavender"
-        );
-
-        localStorage.setItem(
-            "theme",
-            "lavender"
-        );
-
+        document.body.setAttribute("data-theme", "lavender");
+        localStorage.setItem("theme", "lavender");
     } else {
-
-        document.body.setAttribute(
-            "data-theme",
-            "dark"
-        );
-
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
+        document.body.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
     }
 }
