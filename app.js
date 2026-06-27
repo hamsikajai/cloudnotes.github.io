@@ -264,51 +264,46 @@ function updateQuote() {
 
   quote.textContent = `"${quotes[random]}"`;
 }
-//  ☁️ POMODORO TIMER
 let timerInterval;
 let timeLeft = 25 * 60;
 let timerRunning = false;
 
 function updateTimerDisplay() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
+  const timer = document.getElementById("timer");
+  if (!timer) return;
 
-    const timer = document.getElementById("timer");
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
 
-    if (timer) {
-        timer.textContent =
-            `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
-    }
+  timer.textContent =
+    `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
 }
 
-function startTimer() {
-    if (timerRunning) return;
+function toggleTimer() {
+  const button = document.querySelector(".focus-btn");
 
+  if (!timerRunning) {
     timerRunning = true;
+    button.textContent = "⏸ Pause Focus";
 
     timerInterval = setInterval(() => {
-        timeLeft--;
+      timeLeft--;
 
-        updateTimerDisplay();
+      updateTimerDisplay();
 
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            timerRunning = false;
-            alert("🌸 Great job! Time for a break!");
-        }
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        button.textContent = "✨ Start Focus ✨";
+        alert("🌸 Great job! Time for a break!");
+      }
     }, 1000);
-}
 
-function pauseTimer() {
+  } else {
     clearInterval(timerInterval);
     timerRunning = false;
-}
-
-function resetTimer() {
-    clearInterval(timerInterval);
-    timerRunning = false;
-    timeLeft = 25 * 60;
-    updateTimerDisplay();
+    button.textContent = "▶ Resume Focus";
+  }
 }
 
 updateTimerDisplay();
