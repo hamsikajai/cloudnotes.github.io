@@ -241,6 +241,7 @@ function updateGreeting() {
 document.addEventListener("DOMContentLoaded", () => {
     showPage("dashboard");
     updateGreeting();
+    updateQuote();
 });
 const quotes = [
   "Small progress every day adds up.",
