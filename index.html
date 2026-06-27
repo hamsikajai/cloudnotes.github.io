@@ -46,17 +46,7 @@
       <h2>🏠 Dashboard</h2>
 
       <div class="grid">
-<div class="card">
-  <h3>🌸 Focus Timer</h3>
 
-  <h1 id="timer">25:00</h1>
-
-  <div class="task-input">
-    <button onclick="startTimer()">▶ Start</button>
-    <button onclick="pauseTimer()">⏸ Pause</button>
-    <button onclick="resetTimer()">🔄 Reset</button>
-  </div>
-</div>
         <!-- 🌷 TASKS -->
         <div class="card">
           <h3>🌷 Tasks</h3>
@@ -101,6 +91,16 @@
       </div>
 
     </div>
+    <!-- 🌸 FOCUS TIMER -->
+<div class="card">
+  <h3>🌸 Focus Timer</h3>
+
+  <h1 id="timer">25:00</h1>
+
+  <button class="focus-btn" onclick="toggleTimer()">
+    ✨ Start Focus ✨
+  </button>
+</div>
 
     <!-- 📅 CALENDAR -->
     <div id="calendar" class="page">
