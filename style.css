@@ -333,4 +333,5 @@ body {
 }
 .focus-card {
   grid-column: 1 / -1;
+  padding-top: 10px;
 }
